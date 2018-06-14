@@ -40,13 +40,13 @@ io.on('connection', function (socket) {
 arduino.on('open', function () {
     console.log('Arduino connection');
     parser.on('data', function (incomingData) {
-        incomingData = incomingData.replace(/\ /g, '')
-        incomingData = parseInt(incomingData, 10)
+        incomingData = incomingData.replace(/\ /g, '');
+        incomingData = parseInt(incomingData, 10);
 
 
 
 
-        
+
         // console.log(incomingData);
         incomingData = { name: 'Jeff', id: incomingData };
         Storage.getItem('clients')
@@ -61,4 +61,3 @@ arduino.on('open', function () {
 });
 
 console.log('started');
-
