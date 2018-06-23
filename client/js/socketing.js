@@ -32,7 +32,7 @@ function getScores(gameName, length) {
 }
 
 
-// add to game:
+// add to game: scoreAPI
 // <script src="path/to/js/js.cookie.min.js"></script>
 // <script src="path/to/js/socket.io.min.js"></script>
 // <script src="path/to/js/socketing.js"></script>
