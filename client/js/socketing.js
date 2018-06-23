@@ -22,9 +22,8 @@ function saveScore(game, score) {
 }
 
 function getScores(gameName, length) {
-  if (!length) length = 10;
   return new Promise(function (resolve, reject) {
-    socket.emit('reqScores', { game: gameName, length: length })
+    socket.emit('reqScores', { game: gameName, length: length || 10 })
     socket.on('scores', function (scores) {
       resolve(scores);
     })
