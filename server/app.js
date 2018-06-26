@@ -6,7 +6,7 @@ const express = require('express'),
   Storage = require('node-persist');
 
 
-Storage.init({ dir: __dirname, expiredInterval: 1 * 60 * 1000, });
+Storage.init({ logging: true });
 app.use(express.static(path.join(__dirname, '../client')));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/index.html'));
