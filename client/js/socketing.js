@@ -3,17 +3,35 @@ socket.on('firstSend', function () {
   console.log('connected');
 });
 
+if (!Cookies.get('usedNames')) { Cookies.set('usedNames', []) }
+// Cookies.set('currentName', null)
 
-function saveScore(name, game, score, date) {
-  if (arguments.length < 4) throw new Error('Missing argument');
-  else { socket.emit('saveScore', { name: name, game: game, score: parseInt(score, 10), date: date }) }
+let allowedGameNames = ['pacman'];
+
+function saveScore(game, score) {
+  if (arguments.length < 2) throw 'Missing argument';
+
+  let data = {
+    name: Cookies.get('currentName') || 'anonymous',
+    game: game,
+    score: parseInt(score, 10),
+    date: (new Date()).toLocaleString('en-GB')
+  };
+  socket.emit('saveScore', data);
+  console.log('saved: ', data);
 }
 
-function getScores(game) {
+function getScores(gameName, length) {
   return new Promise(function (resolve, reject) {
-    socket.emit('reqScores', game)
+    socket.emit('reqScores', { game: gameName, length: length || 10 })
     socket.on('scores', function (scores) {
       resolve(scores);
     })
   });
 }
+
+
+// add to game: scoreAPI
+// <script src="path/to/js/js.cookie.min.js"></script>
+// <script src="path/to/js/socket.io.min.js"></script>
+// <script src="path/to/js/socketing.js"></script>

@@ -1,11 +1,11 @@
 //ik heb dit meer dan een jaar geleden geschreven pls no hate
 
-let date = (new Date()).toLocaleString('en-GB');
+// let date = (new Date()).toLocaleString('en-GB');
 
 function tableCreate(playerScores) {
   let body = document.body,
     tbl = document.createElement('table');
-  tbl.style.width = '300px';
+  tbl.style.width = '500px';
   tbl.style.border = '3px solid black';
 
   for (let y = 0; y < playerScores.length; y++) {
@@ -28,4 +28,4 @@ function tableCreate(playerScores) {
 }
 
 
-getScores('gameName').then(function (res) { tableCreate(res) });
+getScores('pacman').then(function (res) { tableCreate(res) });
