@@ -4,16 +4,12 @@ const obj = JSON.parse('{"items":[ \
 	"created":"1980",\
 	"format":"png",\
     "desc_short":"Wie kent het niet? Verzamel alle bolletjes!"},\
-    {"id":"test1",\
-	"title":"Spel 2",\
-	"created":"2018",\
-	"format":"jpg",\
-    "desc_short":"Lorem ipsum sit dolar."},\
-    {"id":"test2",\
-	"title":"Spel 3",\
-	"created":"2019",\
-	"format":"jpg",\
-	"desc_short":"Lorem ipsum sit dolar."}]\
+    {"id":"asteroids",\
+	"title":"Asteroids",\
+	"created":"1979",\
+	"format":"png",\
+    "desc_short":"Lorem ipsum sit dolar."}\
+]\
     }\
 ')
 
@@ -56,6 +52,7 @@ for (i = 0; i < l; i++) {
     head.appendChild(article);
 }
 var current_item = 0;
+
 if(location.href.split("#ar")[1] != undefined){
     current_item = location.href.split("#ar")[1];
 }
@@ -64,14 +61,14 @@ if(location.href.split("#ar")[1] != undefined){
 document.addEventListener("keyup", function (event) {   
     event.preventDefault();
     if (event.keyCode === 37) {
-        current_item = current_item - 1;
+        if(current_item > 0)        current_item = current_item - 1;
 
     }
     if (event.keyCode === 39) {
-        current_item = current_item + 1;
+        if(current_item < l-1)        current_item = current_item + 1;
 
     }
-    if (event.keyCode === 13){
+    if (event.keyCode === 65){
         location.href = obj.items[current_item].id;
 
     }
