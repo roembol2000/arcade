@@ -11,7 +11,9 @@ KEY_CODES = {
   71: 'g',
   72: 'h',
   77: 'm',
-  80: 'p'
+  80: 'p',
+  88: 'x',
+  89: 'y'
 }
 
 KEY_STATUS = { keyDown:false };
@@ -1127,7 +1129,9 @@ $(function () {
     context.clearRect(0, 0, Game.canvasWidth, Game.canvasHeight);
 
     Game.FSM.execute();
-
+    if (KEY_STATUS.x || KEY_STATUS.y) {
+      location.href = "/main-page/"
+    }
     if (KEY_STATUS.g) {
       context.beginPath();
       for (var i = 0; i < gridWidth; i++) {
