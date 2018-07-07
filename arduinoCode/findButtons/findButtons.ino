@@ -11,7 +11,7 @@ void setup() {
 
 void loop() {
   for (int i = 0; i < sizeof(pins); i++) {
-    if ( digitalRead(pins[i])== LOW) {
+    if ( digitalRead(pins[i]) == LOW) {
       Serial.print(pins[i]);
       Serial.print("\t");
     };
