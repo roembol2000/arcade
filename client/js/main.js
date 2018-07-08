@@ -1,10 +1,12 @@
-// getId.then(function (res) {
-//   if (res.name) {
-//     //logged in move on to game chooser}
-//   } else {
-//     let clientName = prompt('geef je naam') //kan beter
-//     let game = 'pacman';
-//     saveClientName(res.rfidID, clientName, game)
-//     //logged in move on to game chooser}
-//   }
-// })
+if (!Cookies.get('selectedGame')) { Cookies.set('selectedGame', 0); };
+
+function selectNextGame(direction) {
+  direction = parseInt(direction);
+  document.getElementsByClassName('selected')[0].className = "gallery";
+  let select = parseInt(Cookies.get('selectedGame')) + direction;
+  let gamesLength = document.getElementsByClassName("gallery").length - 1;
+  if (select > gamesLength) { select = 0; }
+  if (select < 0) { select = gamesLength; }
+  Cookies.set('selectedGame', select);
+  document.getElementsByClassName("gallery")[select].className = 'selected';
+}

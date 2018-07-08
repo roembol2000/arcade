@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'Bungee';
+  src: URL('Bungee-Regular.ttf') format('truetype');
+}
+
+body {
+  width: 1280px;
+  height: 1024px;
+  margin: 0;
+  padding: 20px;
+  overflow: hidden;
+  background-color: green;
+}
+
+.gallery {
+  margin: 10px;
+  border: 4px solid #ccc;
+  float: left;
+  width: 300px;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+.desc {
+  padding: 15px;
+  text-align: center;
+  font-size: 150%;
+  color: #ccc;
+  font-family: 'Bungee';
+}
+
+.selected{
+  margin: 10px;
+  border: 5px solid red;
+  float: left;
+  width: 311px;
+}

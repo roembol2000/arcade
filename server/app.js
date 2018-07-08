@@ -22,9 +22,9 @@ io.on('connection', function (socket) {
     Storage.getItem('scores')
       .then(function (scores) {
         scores.push(data)
-        Storage.setItem('scores', scores).catch(function (err) { throw err })
+        Storage.setItem('scores', scores).catch(function (err) { console.error(err) })
         console.log('saveScore ', data);
-      }).catch(function (err) { throw err })
+      }).catch(function (err) { console.error(err) })
   })
 
   socket.on('reqScores', function (incoming) {
@@ -35,7 +35,7 @@ io.on('connection', function (socket) {
         scoresToSend.sort(function (a, b) { return b.score - a.score; })
         scoresToSend = scoresToSend.slice(0, incoming.length);
         socket.emit('scores', scoresToSend);
-      }).catch(function (err) { throw err })
+      }).catch(function (err) { console.error(err) })
 
   })
 });

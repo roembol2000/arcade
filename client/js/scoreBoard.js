@@ -28,4 +28,4 @@ function tableCreate(playerScores) {
 }
 
 
-getScores('pacman').then(function (res) { tableCreate(res) });
+// getScores('pacman').then(function (res) { tableCreate(res) });
