@@ -2,6 +2,7 @@
 //1024
 if (!Cookies.get('selectedGame')) { Cookies.set('selectedGame', 0); };
 
+
 function selectNextGame(direction) {
   direction = parseInt(direction);
   document.getElementsByClassName('selected')[0].className = "game grid-item";
@@ -25,24 +26,6 @@ let keyCode = {
   left: 37
 }
 
-document.body.addEventListener('keydown', function (e) {
-  switch (e.keyCode) {
-    case keyCode.left:
-      selectNextGame(-1);
-      break;
-
-    case keyCode.right:
-      selectNextGame(1);
-      break;
-
-    case keyCode.y:
-      startSelectedGame();
-      break;
-
-    default:
-      break;
-  }
-})
 
 
 function tableCreate(playerScores, game) {
@@ -80,11 +63,27 @@ function tableCreate(playerScores, game) {
   element.appendChild(tbl);
 }
 
+window.onload = function () {
+  getScores('pacman', 10).then(function (res) {
+    tableCreate(res, 'pacman');
+  })
+  document.body.addEventListener('keydown', function (e) {
+    switch (e.keyCode) {
+      case keyCode.left:
+        selectNextGame(-1);
+        break;
 
-getScores('asteroids', 10).then(function (res) {
-  tableCreate(res, 'asteroids');
-})
+      case keyCode.right:
+        selectNextGame(1);
+        break;
 
-getScores('pacman', 10).then(function (res) {
-  tableCreate(res, 'pacman');
-})
+      case keyCode.y:
+        startSelectedGame();
+        break;
+
+      default:
+        break;
+    }
+  });
+  document.getElementsByClassName("game")[Cookies.get('selectedGame')].className = 'game selected grid-item'
+}
