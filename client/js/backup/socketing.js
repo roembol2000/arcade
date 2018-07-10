@@ -6,8 +6,6 @@ socket.on('firstSend', function () {
 if (!Cookies.get('usedNames')) { Cookies.set('usedNames', []) }
 // Cookies.set('currentName', null)
 
-let allowedGameNames = ['pacman'];
-
 function saveScore(game, score) {
   if (arguments.length < 2) throw 'Missing argument';
 
@@ -32,6 +30,5 @@ function getScores(gameName, length) {
 
 
 // add to game: scoreAPI
-// <script src="path/to/js/js.cookie.min.js"></script>
-// <script src="path/to/js/socket.io.min.js"></script>
-// <script src="path/to/js/socketing.js"></script>
+// <script src="/js/socket.io.slim.js"></script>
+// <script src="/js/socketing.js"></script>

@@ -12,12 +12,6 @@ body {
   background-color: green;
 }
 
-.gallery {
-  margin: 10px;
-  border: 4px solid #ccc;
-  float: left;
-  width: 300px;
-}
 
 .logo {
   width: 100%;
@@ -32,7 +26,15 @@ body {
   font-family: 'Bungee';
 }
 
+.gallery {
+  position: static;
+  margin: 10px;
+  border: 4px solid #ccc;
+  float: left;
+  width: 300px;
+}
 .selected{
+  position: static;
   margin: 10px;
   border: 5px solid red;
   float: left;
