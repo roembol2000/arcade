@@ -85,6 +85,6 @@ getScores('asteroids', 10).then(function (res) {
   tableCreate(res, 'asteroids');
 })
 
-getScores('asteroids', 10).then(function (res) {
-  tableCreate(res, 'asteroids');
+getScores('pacman', 10).then(function (res) {
+  tableCreate(res, 'pacman');
 })
