@@ -3,36 +3,30 @@
 <head>
   <title>arcadeMachine</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/arcadeGameAPI.js"></script>
+
 </head>
 
 <body>
+  <div class="grid-container">
+    <div class="grid-item selected game" id="pacman">
+      <div class="desc">pacman</div>
+      <img class="logo" src="games/pacman/logo.png">
+    </div>
 
-  <div class="selected" id="pacman">
-    <img class="logo" src="games/pacman/logo.png">
-    <div class="desc">pacman</div>
-  </div>
+    <div class="grid-item game" id="asteroids">
+      <div class="desc">asteroids</div>
+      <img class="logo" src="games/asteroids/logo.png">
+    </div>
 
-  <div class="gallery" id="asteroids">
-    <img class="logo" src="games/asteroids/logo.png">
-    <div class="desc">asteroids</div>
-  </div>
-
-  <div class="gallery" id="asteroids">
-    <img class="logo" src="games/asteroids/logo.png">
-    <div class="desc">asteroids</div>
-  </div>
-
-  <div class="gallery" id="asteroids">
-    <img class="logo" src="games/asteroids/logo.png">
-    <div class="desc">asteroids</div>
-  </div>
-
-  <div class="gallery" id="asteroids">
-    <img class="logo" src="games/asteroids/logo.png">
-    <div class="desc">asteroids</div>
+    <div class="grid-item" id=""></div>
+    <div class="grid-item" id=""></div>
+    <div class="grid-item" id=""></div>
+    <div class="grid-item" id=""></div>
+    <div class="grid-item" id=""></div>
+    <div class="grid-item" id=""></div>
   </div>
 </body>
+<script src="js/arcadeGameAPI.js"></script>
 <script src="js/main.js"></script>
 
 </html>

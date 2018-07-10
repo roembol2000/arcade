@@ -2,99 +2,57 @@
   "scores": [
     {
       "name": "anonymous",
-      "game": "test",
-      "score": 0,
-      "date": "10/07/2018, 11:47:44"
+      "game": "test1",
+      "score": 1,
+      "date": "10/07/2018"
     },
     {
       "name": "anonymous",
-      "game": "test",
-      "score": 0,
-      "date": "10/07/2018, 11:47:45"
+      "game": "test1",
+      "score": 4219911,
+      "date": "10/07/2018"
     },
     {
       "name": "anonymous",
-      "game": "test",
-      "score": 0,
-      "date": "10/07/2018, 11:47:45"
+      "game": "test1",
+      "score": 4219911,
+      "date": "10/07/2018"
     },
     {
       "name": "anonymous",
-      "game": "test",
-      "score": 0,
-      "date": "10/07/2018, 11:47:46"
+      "game": "test1",
+      "score": 4219911,
+      "date": "10/07/2018"
     },
     {
       "name": "anonymous",
-      "game": "test",
-      "score": 2,
-      "date": "10/07/2018, 11:48:37"
+      "game": "test1",
+      "score": 1,
+      "date": "10/07/2018"
     },
     {
       "name": "anonymous",
-      "game": "test",
-      "score": 0,
-      "date": "10/07/2018, 11:48:43"
+      "game": "test1",
+      "score": 421941,
+      "date": "10/07/2018"
     },
     {
       "name": "anonymous",
-      "game": "test",
-      "score": 0,
-      "date": "10/07/2018, 11:48:44"
+      "game": "test1",
+      "score": 4219411,
+      "date": "10/07/2018"
     },
     {
       "name": "anonymous",
-      "game": "test",
-      "score": 111,
-      "date": "10/07/2018, 11:48:49"
+      "game": "test1",
+      "score": 421941331,
+      "date": "10/07/2018"
     },
     {
       "name": "anonymous",
-      "game": "test",
-      "score": 4,
-      "date": "10/07/2018, 11:48:56"
-    },
-    {
-      "name": "anonymous",
-      "game": "test",
-      "score": 42,
-      "date": "10/07/2018, 11:48:58"
-    },
-    {
-      "name": "anonymous",
-      "game": "test",
-      "score": 4222,
-      "date": "10/07/2018, 11:49:00"
-    },
-    {
-      "name": "anonymous",
-      "game": "test",
-      "score": 4222,
-      "date": "10/07/2018, 11:49:26"
-    },
-    {
-      "name": "anonymous",
-      "game": "test",
-      "score": 4222,
-      "date": "10/07/2018, 11:49:26"
-    },
-    {
-      "name": "anonymous",
-      "game": "test",
-      "score": 4222,
-      "date": "10/07/2018, 11:49:27"
-    },
-    {
-      "name": "anonymous",
-      "game": "test",
-      "score": 42,
-      "date": "10/07/2018, 11:49:31"
-    },
-    {
-      "name": "anonymous",
-      "game": "test",
-      "score": 421,
-      "date": "10/07/2018, 11:49:36"
+      "game": "pacman",
+      "score": 80,
+      "date": "10/07/2018"
     }
   ]
 }

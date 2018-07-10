@@ -20,7 +20,7 @@ function saveScore(game, score) {
     name: Cookies.get('currentName') || 'anonymous',
     game: game,
     score: parseInt(score, 10),
-    date: (new Date()).toLocaleString('en-GB')
+    date: (new Date()).toLocaleDateString('en-GB')
   };
   socket.emit('saveScore', data);
   console.log('saved: ', data);
@@ -34,3 +34,9 @@ function getScores(gameName, length) {
     })
   });
 }
+
+document.addEventListener('keydown', function (e) {
+  if (e.keyCode == 88) { //x
+    window.location.replace('/');
+  }
+})
