@@ -1,0 +1,4 @@
+stty -F /dev/ttyUSB* 1000000 raw -clocal -echo
+cat /dev/tty*
+
+chromium-browser --kiosk --incognito --disable-notifications localhost:8080

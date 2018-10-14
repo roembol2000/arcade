@@ -26,8 +26,6 @@ let keyCode = {
   left: 37
 }
 
-
-
 function tableCreate(playerScores, game) {
   let element = document.getElementById(game);
   let tbl = document.createElement('table');
