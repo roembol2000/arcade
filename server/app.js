@@ -2,11 +2,11 @@ const express = require('express'),
   app = express(),
   server = require('http').Server(app),
   io = require('socket.io')(server),
-  path = require('path')
+  path = require('path'),
+  shell = require('shelljs'),
+  low = require('lowdb'),
+  FileSync = require('lowdb/adapters/FileSync');
 
-
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync(path.join(__dirname, 'scores.json'))
 const db = low(adapter)
 
@@ -39,6 +39,11 @@ io.on('connection', function (socket) {
   })
 });
 
+setTimeout(function () {
+  shell.exec('chromium-browser --kiosk --incognito --disable-notifications http://localhost:8080');
+  console.log('started');
+}, 1000);
+
 // const SerialPort = require('serialport');
 // const parsers = SerialPort.parsers;
 // const parser = new parsers.Readline({
@@ -55,5 +60,3 @@ io.on('connection', function (socket) {
 // parser.on('data', function (incomingData) {
 // });
 // });
-
-console.log('started');
