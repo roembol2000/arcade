@@ -18,13 +18,10 @@
   },
   "homepage": "https://github.com/SirMorfield/kast#readme",
   "dependencies": {
-    "chrome-launcher": "^0.10.5",
     "express": "^4.16.3",
     "lowdb": "^1.0.0",
     "npm": "^6.1.0",
     "path": "^0.12.7",
-    "puppeteer": "^1.9.0",
-    "shelljs": "^0.8.2",
     "socket.io": "^2.1.1"
   },
   "devDependencies": {}
