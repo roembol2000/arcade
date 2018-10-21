@@ -78,9 +78,6 @@ window.onload = function () {
       case keyCode.y:
         startSelectedGame();
         break;
-
-      default:
-        break;
     }
   });
   document.getElementsByClassName("game")[Cookies.get('selectedGame')].className = 'game selected grid-item'

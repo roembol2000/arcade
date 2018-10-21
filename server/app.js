@@ -3,8 +3,8 @@ const express = require('express'),
   server = require('http').Server(app),
   io = require('socket.io')(server),
   path = require('path'),
-  shell = require('shelljs'),
   low = require('lowdb'),
+  { exec } = require('child_process'),
   FileSync = require('lowdb/adapters/FileSync');
 
 const adapter = new FileSync(path.join(__dirname, 'scores.json'))
@@ -16,8 +16,6 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
-
-// app.get('/js/', function (req, res) { });
 
 server.listen(8080);
 
@@ -39,24 +37,13 @@ io.on('connection', function (socket) {
   })
 });
 
-setTimeout(function () {
-  shell.exec('chromium-browser --kiosk --incognito --disable-notifications http://localhost:8080');
-  console.log('started');
-}, 1000);
+exec('chromium-browser --disable-notifications --kiosk http://localhost:8080', (err, stdout, stderr) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  console.log(`stderr: ${stderr}`);
+});
 
-// const SerialPort = require('serialport');
-// const parsers = SerialPort.parsers;
-// const parser = new parsers.Readline({
-// delimiter: '\r\n'
-// });
-// // const arduinoPort = '/dev/ttyACM0';
-// const arduinoPort = '/dev/cu.usbmodemfa131';
-// const arduino = new SerialPort(arduinoPort, {
-// baudRate: 115200
-// });
-// arduino.pipe(parser);
-// arduino.on('open', function () {
-// console.log('Arduino connection');
-// parser.on('data', function (incomingData) {
-// });
-// });
+console.log('running');
