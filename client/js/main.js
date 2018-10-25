@@ -1,29 +1,26 @@
 //1280
 //1024
-if (!Cookies.get('selectedGame')) { Cookies.set('selectedGame', 0); };
-
+let selectedGame = 0;
 
 function selectNextGame(direction) {
-  direction = parseInt(direction);
   document.getElementsByClassName('selected')[0].className = "game grid-item";
-  let select = parseInt(Cookies.get('selectedGame'), 10) + direction;
   let gamesLength = document.getElementsByClassName("game").length - 1;
-  if (select > gamesLength) { select = 0; }
-  if (select < 0) { select = gamesLength; }
-  Cookies.set('selectedGame', select);
-  document.getElementsByClassName("game")[select].className = 'game selected grid-item';
+  let newSelectedGame = selectedGame + direction;
+  if (newSelectedGame > gamesLength) {
+    newSelectedGame = 0;
+  }
+  if (newSelectedGame < 0) {
+    newSelectedGame = gamesLength;
+  }
+
+  document.getElementsByClassName("game")[newSelectedGame].className = 'game selected grid-item';
+  selectedGame = newSelectedGame;
 }
 
 function startSelectedGame() {
   let location = '/games/' + document.getElementsByClassName('selected')[0].id;
   location = location.replace('?', '');
   window.location.replace(location);
-}
-
-let keyCode = {
-  y: 89,
-  right: 39,
-  left: 37
 }
 
 function tableCreate(playerScores, game) {
@@ -35,7 +32,6 @@ function tableCreate(playerScores, game) {
   tbl.style.fontFamily = 'Bungee';
   tbl.style.fontSize = '12px';
   tbl.style.fontSize = 'auto';
-  // tbl.style.border = '3px solid black';
   tbl.style.borderCollapse = 'collapse';
 
   for (let y = 0; y < playerScores.length; y++) {
@@ -64,21 +60,22 @@ function tableCreate(playerScores, game) {
 window.onload = function () {
   getScores('pacman', 10).then(function (res) {
     tableCreate(res, 'pacman');
-  })
+  });
+
   document.body.addEventListener('keydown', function (e) {
-    switch (e.keyCode) {
-      case keyCode.left:
+    switch (e.code) {
+      case 'ArrowLeft':
         selectNextGame(-1);
         break;
 
-      case keyCode.right:
+      case 'ArrowRight':
         selectNextGame(1);
         break;
 
-      case keyCode.y:
+      case 'KeyY':
         startSelectedGame();
         break;
     }
   });
-  document.getElementsByClassName("game")[Cookies.get('selectedGame')].className = 'game selected grid-item'
+  document.getElementsByClassName("game")[0].className = 'game selected grid-item'
 }

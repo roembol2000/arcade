@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>keyboard</title>
+
+  <style media="screen">
+    body {
+    background-color:black;
+  }
+  #keyboard {
+      display:inline-block;
+      padding:10px 15px;
+      border:1px solid #009;
+      border-radius:10px;
+      background-color:#87cdf9;
+      text-align:center;
+      box-shadow:4px 4px 4px #999;
+  }
+  #keyboard div {
+      margin:5px 0;
+  }
+  #space {
+      width:184px;
+  }
+  #keyboard label {
+      margin-top:20px;
+      font-family:serif;
+      text-decoration:underline;
+  }
+  #keyboard input {
+      box-shadow:2px 2px 2px #666;
+  }
+  #keyboard input[type="text"] {
+      margin-top:20px;
+      border:1px solid #666;
+      border-radius:4px;
+      box-shadow:none;
+  }
+  #keyboard #back {
+      font-weight:bold;
+  }
+</style>
+  <script src="../../../../js/arcadeGameAPI.js"></script> <!-- jaja ik weet het -->
+  <script>
+
+    var i, c;
+    let x = window.location.pathname.replace(/\?/g, '').split("/");
+    function init() {
+
+      document.getElementById('gameInfo').innerHTML = 'game: ' + x[2] + '   score: ' + x[3] + '   date: ' + x[4]
+
+      i = document.getElementById('keyboard').getElementsByTagName('input');
+
+      for (c = 0; c < i.length; c++) {
+        if (i[c].type === 'button' && i[c].id !== 'submit') {
+          i[c].addEventListener('onclick', makeClickHandler(c));
+        }
+      }
+
+      document.getElementById('clear').onclick = function () {
+        document.getElementById('text').value = '';
+      }
+
+      let prevPos = { x: 3, y: 0 };
+      let keyElements = document.getElementsByClassName('key');
+
+      let keys = [
+        document.querySelectorAll('#keys > div:nth-child(1) > input[type="button"]'), //why does this start at 1??
+        document.querySelectorAll('#keys > div:nth-child(2) > input[type="button"]'),
+        document.querySelectorAll('#keys > div:nth-child(3) > input[type="button"]'),
+        document.getElementsByClassName('specialKey')
+      ];
+
+      let maxY = keys.length - 1;
+
+      function setNewPos(newX, newY) {
+        let newPos = {
+          x: prevPos.x + newX,
+          y: prevPos.y + newY
+        };
+
+        if (newPos.y < 0) return;
+        if (newPos.y > maxY) return;
+        if (newY === 0) {
+          if (newPos.x > keys[newPos.y].length - 1) return;
+          if (newPos.x < 0) return;
+        }
+
+        Array.from(keyElements).forEach((key, index) => keyElements[index].style.backgroundColor = 'grey'); //clearing all keys
+
+        if (newY !== 0) { //this is where the magic happens
+          let prevPosPercentX = prevPos.x / keys[prevPos.y].length;
+          newPos.x = Math.floor(keys[newPos.y].length * prevPosPercentX);
+        }
+        keys[newPos.y][newPos.x].style.backgroundColor = 'yellow'
+        prevPos.x = newPos.x;
+        prevPos.y = newPos.y;
+      }
+
+      const clickSelectedButton = () => {
+        let button;
+        if (prevPos.y <= 2) button = document.querySelectorAll('#keys > div:nth-child(' + (prevPos.y + 1) + ') > input[type="button"]')[prevPos.x];
+        else button = document.getElementsByClassName('specialKey')[prevPos.x];
+        if (button.id !== 'back' && button.id !== 'clear' && document.querySelector('#text').value.trim().length > 10) return; //only 10 characters for a name are allowed
+
+        button.click();
+        button.style.backgroundColor = 'black';
+        setTimeout(() => {
+          button.style.backgroundColor = 'grey';
+        }, 150);
+      }
+
+      document.getElementById('submit').onclick = () => {
+        let x = window.location.pathname.replace('?', '').split("/")
+        let info = {
+          game: x[2],
+          score: x[3],
+          date: x[4],
+          name: document.querySelector('#text').value.trim().replace(/ /, '') || 'Anonymous'
+        }
+        socket.emit('saveScore', info);
+        console.log('submit');
+        window.location.replace('/');
+      }
+
+      document.addEventListener('keydown', function (e) {
+        switch (e.code) {
+          case 'KeyD':
+            setNewPos(1, 0);
+            break;
+
+          case 'ArrowRight':
+            setNewPos(1, 0);
+            break;
+
+          case 'KeyS':
+            setNewPos(0, 1);
+            break;
+
+          case 'ArrowDown':
+            setNewPos(0, 1);
+            break;
+
+          case 'KeyA':
+            setNewPos(-1, 0);
+            break;
+
+          case 'ArrowLeft':
+            setNewPos(-1, 0);
+            break;
+
+          case 'KeyW':
+            setNewPos(0, -1);
+            break;
+
+          case 'ArrowUp':
+            setNewPos(0, -1);
+            break;
+
+          case 'KeyY': //select
+            clickSelectedButton();
+            break;
+        }
+      });
+    }
+
+    function makeClickHandler(c) {
+      i[c].onclick = function () {
+        /* find the non-text button  which has an id */
+        if (i[c].id === 'back') {
+          /* remove last character from the input the type="text" element using regular expression */
+          document.getElementById('text').value =
+            document.getElementById('text').value.replace(/.$/, '');
+        }
+        /* find the text buttons */
+        else {
+          /* add characters to the input type="text" element */
+          document.getElementById('text').value += this.value.toLowerCase();
+        }
+      };
+    }
+    window.addEventListener ? window.addEventListener('load', init, false) : window.attachEvent('onload');
+
+  </script>
+
+</head>
+
+<body>
+  <div id="gameInfo"></div>
+  <div id="keyboard">
+    <input id="text" type="text">
+    <div id="keys">
+      <div>
+        <!-- 10 -->
+        <input type="button" value="Q" class="key">
+        <input type="button" value="W" class="key">
+        <input type="button" value="E" class="key">
+        <input type="button" value="R" class="key">
+        <input type="button" value="T" class="key">
+        <input type="button" value="Y" class="key">
+        <input type="button" value="U" class="key">
+        <input type="button" value="I" class="key">
+        <input type="button" value="O" class="key">
+        <input type="button" value="P" class="key">
+      </div>
+      <div>
+        <!-- 9 -->
+        <input type="button" value="A" class="key">
+        <input type="button" value="S" class="key">
+        <input type="button" value="D" class="key">
+        <input type="button" value="F" class="key">
+        <input type="button" value="G" class="key">
+        <input type="button" value="H" class="key">
+        <input type="button" value="J" class="key">
+        <input type="button" value="K" class="key">
+        <input type="button" value="L" class="key">
+      </div>
+      <div>
+        <!-- 7 -->
+        <input type="button" value="Z" class="key">
+        <input type="button" value="X" class="key">
+        <input type="button" value="C" class="key">
+        <input type="button" value="V" class="key">
+        <input type="button" value="B" class="key">
+        <input type="button" value="N" class="key">
+        <input type="button" value="M" class="key">
+      </div>
+      <div>
+        <input id="back" type="button" value="&#8592;" class="key specialKey">
+        <input id="space" type="button" value=" " class="key specialKey">
+        <input id="clear" type="reset" value="clear" class="key specialKey">
+        <input id="submit" type="button" value="submit" class="key specialKey">
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <br>
+
+  <font style='color:inherit; padding:5px; font-family: Comic Sans, Comic Sans MS; font-size: 20px;'>
+    <font color='#ff1a1a'>G</font>
+    <font color='#ff5b1a'>r</font>
+    <font color='#ff911a'>a</font>
+    <font color='#ffc71a'>p</font>
+    <font color='#f7ff1a'>h</font>
+    <font color='#b6ff1a'>i</font>
+    <font color='#70ff1a'>c</font>
+    <font color='#1aff70'>a</font>
+    <font color='#1affb1'>l</font>
+    <font color='#1affe7'>&emsp; </font>
+    <font color='#1affe7'>d</font>
+    <font color='#1ac1ff'>e</font>
+    <font color='#1a7bff'>s</font>
+    <font color='#2a1aff'>i</font>
+    <font color='#861aff'>g</font>
+    <font color='#c11aff'>n</font>
+    <font color='#ff1afd'>&emsp; </font>
+    <font color='#ff1afd'>d</font>
+    <font color='#ff1abc'>o</font>
+    <font color='#ff1a60'>e</font>
+    <font color='#ff1a1a'>s</font>
+    <font color='#ff5b1a'>n</font>
+    <font color='#ff911a'>'</font>
+    <font color='#ffc71a'>t</font>
+    <font color='#f7ff1a'>&emsp; </font>
+    <font color='#f7ff1a'>i</font>
+    <font color='#b6ff1a'>n</font>
+    <font color='#70ff1a'>t</font>
+    <font color='#1aff70'>e</font>
+    <font color='#1affb1'>r</font>
+    <font color='#1affe7'>e</font>
+    <font color='#1ac1ff'>s</font>
+    <font color='#1a7bff'>t</font>
+    <font color='#2a1aff'>&emsp; </font>
+    <font color='#2a1aff'>m</font>
+    <font color='#861aff'>e</font>
+    <font color='#c11aff'>.</font>
+    <font color='#ff1afd'></font>
+  </font>
+</body>
+
+</html>

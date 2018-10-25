@@ -16,6 +16,9 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
+app.get('/keyboard/:gameName/:score/:date', function (req, res) {
+  res.sendFile(path.join(__dirname, '../client/keyboard.html'));
+});
 
 server.listen(8080);
 
@@ -37,13 +40,13 @@ io.on('connection', function (socket) {
   })
 });
 
-exec('chromium-browser --disable-notifications --disable-infobars --kiosk --app=http://localhost:8080', (err, stdout, stderr) => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-  console.log(`stdout: ${stdout}`);
-  console.log(`stderr: ${stderr}`);
-});
+// exec('chromium-browser --disable-notifications --disable-infobars --kiosk --app=http://localhost:8080', (err, stdout, stderr) => {
+//   if (err) {
+//     console.error(err);
+//     return;
+//   }
+//   console.log(`stdout: ${stdout}`);
+//   console.log(`stderr: ${stderr}`);
+// });
 
 console.log('running');
