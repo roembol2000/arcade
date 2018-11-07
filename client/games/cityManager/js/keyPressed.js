@@ -122,19 +122,6 @@ function right() {
 
 function keyPressed() {
   switch (keyCode) {
-    case 87: // up
-      up()
-      break;
-    case 65: // left
-      left()
-      break;
-    case 83: // down
-      down()
-      break;
-    case 68: // right
-      right()
-      break;
-
     case UP_ARROW: // up
       up()
       break;
@@ -148,19 +135,19 @@ function keyPressed() {
       right()
       break;
 
-    case 66: // b, buys cells on the right and bottom
+    case 65:
       buyLand();
       break;
-    case 74: // j
+    case 87: // j
       lmbWindow = "game";
       break;
-    case 75: // k
+    case 68: // k
       lmbWindow = "GUI";
       break;
-    case 76: // l
+    case 83: // l
       lmbWindow = "buttons";
       break;
-    case 69: // e, check if lmbWindow is either "GUI" or "game"
+    case 89: // e, check if lmbWindow is either "GUI" or "game"
       if (lmbWindow === "game") { // place/remove building
         cells
         [player.gameY / cellWH][(Math.floor(player.gameX - GUIWidth)) / cellWH + 1]
