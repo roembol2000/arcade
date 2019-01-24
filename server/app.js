@@ -40,7 +40,7 @@ io.on('connection', function (socket) {
   })
 });
 
-exec('chromium-browser --disable-notifications --disable-infobars --kiosk --app=http://localhost:8080', (err, stdout, stderr) => {
+exec('DISPLAY=:0 chromium-browser --disable-notifications --disable-infobars --kiosk --app=http://localhost:8080', (err, stdout, stderr) => {
   if (err) {
     console.error(err);
     return;

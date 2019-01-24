@@ -44,3 +44,10 @@ body {
   padding: 20px;
   width: 270px;
 }
+
+.logoJoppe{
+  width: 30%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
