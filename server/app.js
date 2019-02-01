@@ -40,13 +40,13 @@ io.on('connection', function (socket) {
   })
 });
 
-// exec('DISPLAY=:0 chromium-browser --disable-notifications --disable-infobars --start-fullscreen --app=http://localhost:8080', (err, stdout, stderr) => {
-//   if (err) {
-//     console.error(err);
-//     return;
-//   }
-//   console.log(`stdout: ${stdout}`);
-//   console.log(`stderr: ${stderr}`);
-// });
+exec('DISPLAY=:0 chromium-browser --disable-notifications --disable-infobars --start-fullscreen --app=http://localhost:8080', (err, stdout, stderr) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(`stdout: ${stdout}`);
+  console.log(`stderr: ${stderr}`);
+});
 
 console.log('running');
