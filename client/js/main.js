@@ -58,7 +58,7 @@ function tableCreate(playerScores, game) {
 }
 
 window.onload = function () {
-  getScores('pacman', 10).then(function (res) {
+  getScores('pacman', 20).then(function (res) {
     tableCreate(res, 'pacman');
   });
 
