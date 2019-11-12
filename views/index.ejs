@@ -1,0 +1,43 @@
+<html>
+
+<head>
+	<title>arcadeMachine</title>
+	<link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+	<div class="gamesContainer">
+		<% games.forEach((game) => { %>
+		<div class="game" id="<%=game.id%>">
+			<div class="descWrapper">
+				<div class="gameName"><%=game.title%></div>
+				<div class="gameAuthor"><%=game.author%></div>
+				<img class="gameLogo" src="/games/<%=game.id%>/logo.png">
+			</div>
+
+			<table class="scoresTable">
+				<% game.scores.forEach((score) => { %>
+				<tr>
+					<td class="scoresTableScore">
+						<%=score.score%>
+					</td>
+					<td class="scoresTablePlayerName">
+						<%=score.playerName%>
+					</td>
+					<td class="scoresTableDate">
+						<%=score.date%>
+					</td>
+				</tr>
+				<% }) %>
+			</table>
+		</div>
+		<% }); %>
+	</div>
+
+	<img src="/logo.svg" class="logoJoppe">
+</body>
+<script src="/js/arcadeGameAPI.js"></script>
+<script src="/js/main.js"></script>
+
+</html>

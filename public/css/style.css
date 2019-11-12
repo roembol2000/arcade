@@ -12,42 +12,77 @@ body {
   background-color: rgb(83, 193, 83);
 }
 
-.logo {
+.descWrapper{
+	height: 290px;
+}
+
+.gameLogo {
   width: 100%;
   height: auto;
 }
 
-.desc {
-  padding: 12px;
+.gameName {
+  /* padding: 12px; */
   text-align: center;
   font-size: 150%;
   color: #ccc;
   font-family: 'Bungee';
 }
 
+.gameAuthor {
+	padding: 12px;
+	text-align: center;
+	font-size: 100%;
+	color: #ccc;
+	font-family: 'Bungee';
+  }
+
 .selected{
-  /* border: 5px solid red; */
   outline: 4px solid #fff;
   outline-offset: -10px;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  /* background-color: rgb(243, 33, 131); */
-  padding: 10px;
+.gamesContainer {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.grid-item {
+.game{
   /* background-color: rgba(255, 255, 255, 0.8); */
-  /* border: 1px solid rgba(0, 0, 0, 0.8); */
   padding: 20px;
   width: 270px;
 }
 
-.logoJoppe{
-  width: 30%;
+.logoJoppe {
+  width: 400px;
   position: absolute;
   right: 0;
   bottom: 0;
+}
+
+.scoresTable {
+	width: 100%;
+	color: white;
+	margin-top: 5px;
+	font-family: Bungee;
+	font-size: auto;
+	border-collapse: collapse;
+}
+
+.scoresTableScore {
+	padding: 2px;
+	border: none;
+	text-align: right;
+	}
+
+.scoresTablePlayerName {
+	padding: 2px;
+	border: none;
+	text-align: center;
+}
+
+.scoresTableDate {
+	padding: 2px;
+	border: none;
+	text-align: center;
 }

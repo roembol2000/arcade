@@ -1,59 +1,32 @@
 (async () => {
-  const path = require('path')
-  const express = require('express')
+	const path = require('path')
+	process.env.root = __dirname
 
-  const app = express()
-  const http = require('http')
-  const httpServer = http.createServer(app)
+	const express = require('express')
+	const app = express()
 
-  const low = require('lowdb')
-  const FileAsync = require('lowdb/adapters/FileAsync')
-  const adapter = new FileAsync(path.join(__dirname, 'scores.json'))
+	app.set('views', path.join(__dirname, 'views/'))
+	app.set('view engine', 'ejs')
 
-  const db = await low(adapter)
+	const http = require('http')
+	const httpServer = http.createServer(app)
 
-  app.use(express.static(path.join(__dirname, 'client/')))
-  app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/index.html'))
-  })
+	app.use(express.static(path.join(__dirname, 'public/')))
 
-  app.get('/keyboard/:gameName/:score/:date', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/keyboard.html'))
-  })
+	const io = require('socket.io')(httpServer)
+	const router = await require('./server/router.js')(io)
+	app.get('/', router.index)
+	app.get('/keyboard/:gameName/:score', router.keyboard)
 
-  const io = require('socket.io')(server)
-  io.on('connection', (socket) => {
-    socket.emit('firstSend')
+	await new Promise((resolve) => httpServer.listen(8080, resolve))
 
-    socket.on('saveScore', (data) => {
-      db.get('scores')
-        .push(data)
-        .write()
-    })
-
-    socket.on('reqScores', (incoming) => {
-      let scoresToSend = []
-      db.get('scores').write().forEach((score) => { if (score.game == incoming.game) { scoresToSend.push(score) } })
-      scoresToSend.sort((a, b) => b.score - a.score)
-
-      scoresToSend = scoresToSend.slice(0, incoming.length)
-      socket.emit('scores', scoresToSend)
-    })
-  })
-
-  await new Promise((resolve) => {
-    httpServer.listen(8080, () => {
-      resolve()
-    })
-  })
-
-  const { exec } = require('child_process')
-  exec('chromium-browser --disable-notifications --disable-infobars --start-fullscreen --app=http://localhost:8080', (err, stdout, stderr) => {
-    if (err) {
-      console.error(err)
-      return
-    }
-    console.log(`stdout: ${stdout}`)
-    console.log(`stderr: ${stderr}`)
-  })
+	// const { exec } = require('child_process')
+	// exec('chromium-browser --disable-notifications --disable-infobars --start-fullscreen --app=http://localhost:8080', (err, stdout, stderr) => {
+	//   if (err) {
+	//     console.error(err)
+	//     return
+	//   }
+	//   console.log(`stdout: ${stdout}`)
+	//   console.log(`stderr: ${stderr}`)
+	// })
 })()

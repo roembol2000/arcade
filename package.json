@@ -1,29 +1,29 @@
 {
-  "name": "kast",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server/app.js",
-  "scripts": {
-    "start": "node server/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SirMorfield/kast.git"
-  },
-  "author": "Joppe Koers",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SirMorfield/kast/issues"
-  },
-  "homepage": "https://github.com/SirMorfield/kast#readme",
-  "dependencies": {
-    "express": "^4.16.3",
-    "lowdb": "^1.0.0",
-    "nodemon": "^1.18.9",
-    "npm": "^6.1.0",
-    "path": "^0.12.7",
-    "socket.io": "^2.1.1"
-  },
-  "devDependencies": {}
+	"name": "kast",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server/app.js",
+	"scripts": {
+		"start": "node app.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/SirMorfield/kast.git"
+	},
+	"author": "Joppe Koers",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/SirMorfield/kast/issues"
+	},
+	"homepage": "https://github.com/SirMorfield/kast#readme",
+	"dependencies": {
+		"ejs": "^2.7.1",
+		"express": "^4.17.1",
+		"lowdb": "^1.0.0",
+		"npm": "^6.11.3",
+		"path": "^0.12.7",
+		"socket.io": "^2.2.0"
+	},
+	"devDependencies": {}
 }
