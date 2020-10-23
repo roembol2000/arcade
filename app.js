@@ -20,6 +20,7 @@
 
 	await new Promise((resolve) => httpServer.listen(8080, resolve))
 
+	console.log('running on http://localhost:8080')
 	const os = require('os')
 
 	if (os.hostname() == 'arcade') {

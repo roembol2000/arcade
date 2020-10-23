@@ -1,0 +1,14 @@
+How to add a game to the arcade:
+
+Make sure that your game doesn't need a internet connection.
+Copy game folder to public/games
+In the game folder create a file named "env.json"
+With the following content:
+"
+{
+	"title": "my title",
+	"author": "unknown",
+	"created": "unknown",
+	"scores": []
+}
+"
