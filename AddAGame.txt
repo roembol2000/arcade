@@ -1,8 +1,10 @@
 How to add a game to the arcade:
 
-Make sure that your game doesn't need a internet connection.
-Copy game folder to public/games
-In the game folder create a file named "env.json"
+1. Make sure that your game doesn't need a internet connection.
+2. Make sure that your game has a index.html file
+2.5: Make sure that your program doesn't the x key
+3. Copy game folder to public/games
+4. In the game folder create a file named "env.json"
 With the following content:
 "
 {
@@ -12,3 +14,22 @@ With the following content:
 	"scores": []
 }
 "
+5. In the game folder copy your logo
+Name it logo.png
+Please make sure it has a 4:3 aspect ratio
+
+Optional:
+
+6. To add a scoreboard:
+Copy "<script src="/js/arcadeGameAPI.js"></script>" to the beginning of your index.html
+
+There are two functions:
+
+saveScore(game String, score Number)
+game: The name of the folder of your game (case sensitive)
+score: The score
+
+getScores(game String, length Number)
+game: The name of the folder of your game (case sensitive)
+length: number of scores you want (highest score first)
+It only returns the scores that are saved, even if you request more.

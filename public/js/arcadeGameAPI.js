@@ -19,9 +19,9 @@ function saveScore(game, score) {
   window.location.replace('/keyboard/' + game + '/' + score + '/' + date);
 }
 
-function getScores(gameName, length) {
+function getScores(game, length = 10) {
   return new Promise(function (resolve, reject) {
-    socket.emit('reqScores', { game: gameName, length: length || 10 });
+    socket.emit('reqScores', { game, length });
     socket.on('scores', (scores) => resolve(scores));
   });
 }
