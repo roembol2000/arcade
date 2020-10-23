@@ -20,13 +20,17 @@
 
 	await new Promise((resolve) => httpServer.listen(8080, resolve))
 
-	// const { exec } = require('child_process')
-	// exec('chromium-browser --disable-notifications --disable-infobars --start-fullscreen --app=http://localhost:8080', (err, stdout, stderr) => {
-	//   if (err) {
-	//     console.error(err)
-	//     return
-	//   }
-	//   console.log(`stdout: ${stdout}`)
-	//   console.log(`stderr: ${stderr}`)
-	// })
+	const os = require('os')
+
+	if (os.hostname() == 'arcade') {
+		const { exec } = require('child_process')
+		exec('chromium-browser --disable-notifications --disable-infobars --start-fullscreen --app=http://localhost:8080', (err, stdout, stderr) => {
+		  if (err) {
+		    console.error(err)
+		    return
+		  }
+		  console.log(`stdout: ${stdout}`)
+		  console.log(`stderr: ${stderr}`)
+		})
+	}
 })()
