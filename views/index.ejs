@@ -3,24 +3,30 @@
 <head>
 	<title>arcadeMachine</title>
 	<link rel="stylesheet" href="/css/style.css">
-
+	<script src="/js/p5.min.js"></script>
+	<script src="/js/wallpaper.js"></script>
 </head>
 
-<body>
+<body class="blurFade">
+	<main></main>
+	<h1 class="title">Kies je spel</h1>
 	<div class="gamesContainer">
 		<% games.forEach((game) => { %>
-		<div class="game" id="<%=game.id%>">
-			<div class="descWrapper">
+			<div class="game" id="<%=game.id%>">
+				<div class="overlay"></div>
+				<div class="descWrapper">
+					<div class="gameLogo">
+						<img src="/games/<%=game.id%>/logo.png">
+					</div>
 				<div class="gameName"><%=game.title%></div>
-				<div class="gameAuthor"><%=game.author%></div>
-				<img class="gameLogo" src="/games/<%=game.id%>/logo.png">
+				<div class="gameAuthor">Gemaakt door <%=game.author%></div>
 			</div>
-
-			<table class="scoresTable">
+			
+			<!-- <table class="scoresTable">
 				<% game.scores.forEach((score) => { %>
-				<tr>
-					<td class="scoresTableScore">
-						<%=score.score%>
+					<tr>
+						<td class="scoresTableScore">
+							<%=score.score%>
 					</td>
 					<td class="scoresTablePlayerName">
 						<%=score.playerName%>
@@ -30,12 +36,10 @@
 					</td>
 				</tr>
 				<% }) %>
-			</table>
+			</table> -->
 		</div>
 		<% }); %>
 	</div>
-
-	<img src="/logo.svg" class="logoJoppe">
 </body>
 <script src="/js/arcadeGameAPI.js"></script>
 <script src="/js/main.js"></script>

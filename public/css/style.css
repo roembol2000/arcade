@@ -1,88 +1,143 @@
 @font-face {
-  font-family: 'Bungee';
-  src: URL('Bungee-Regular.ttf') format('truetype');
+  font-family: "Inter";
+  src: URL("Inter-VariableFont_slnt,wght.ttf") format("truetype");
 }
 
 body {
   width: 1280px;
   height: 1024px;
   margin: 0;
-  padding: 20px;
+  /* padding: 20px; */
   overflow: hidden;
-  background-color: rgb(83, 193, 83);
+  background-color: #121212;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: all 0.5s;
 }
 
-.descWrapper{
-	height: 290px;
+body.blurFade {
+  filter: brightness(0);
+  transform: scale(1.2, 1.2);
+}
+
+main {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+
+.title {
+  margin: 100px 0 0 100px;
+
+  font-family: "Inter";
+  font-size: 48px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.descWrapper {
+  height: 100%;
 }
 
 .gameLogo {
+  display: flex;
+  justify-content: center;
+
+  border-radius: 25px 25px 0 0;
+
   width: 100%;
-  height: auto;
+  height: 284px;
+  overflow: hidden;
+}
+
+.gameLogo img {
+  height: 100%;
 }
 
 .gameName {
   /* padding: 12px; */
-  text-align: center;
-  font-size: 150%;
-  color: #ccc;
-  font-family: 'Bungee';
+  font-size: 36px;
+  color: #fff;
+  font-family: "Inter";
+  font-weight: 600;
+
+  margin: 15px 0 0 18px;
 }
 
 .gameAuthor {
-	padding: 12px;
-	text-align: center;
-	font-size: 100%;
-	color: #ccc;
-	font-family: 'Bungee';
-  }
+  margin: 5px 0 0 18px;
+  font-size: 24px;
+  color: #fff;
+  font-family: "Inter";
+}
 
-.selected{
-  outline: 4px solid #fff;
-  outline-offset: -10px;
+.selected {
+  /* border: 3px solid #fff; */
+  /* outline-offset: 3px; */
+  /* box-shadow: inset 0 0 0 3px #fff; */
+  transform: translateY(-15px);
+}
+
+.selected .overlay {
+  position: absolute;
+  /* z-index: 5; */
+
+  width: 330px;
+  height: 396px;
+
+  box-shadow: inset 0 0 0 3px #fff;
+  border-radius: 25px;
 }
 
 .gamesContainer {
   display: flex;
-  justify-content: flex-start;
+  overflow: hidden;
+
+  margin-top: 36px;
+  padding-top: 15px;
 }
 
-.game{
-  /* background-color: rgba(255, 255, 255, 0.8); */
-  padding: 20px;
-  width: 270px;
+.game {
+  background-color: #181818;
+  border-radius: 25px;
+  margin-right: 32px;
+  width: 330px;
+  height: 396px;
+  flex-shrink: 0;
+  float: left;
+
+  transition: transform 0.25s;
 }
 
-.logoJoppe {
-  width: 400px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+.game:first-child {
+  margin-left: 100px;
 }
 
 .scoresTable {
-	width: 100%;
-	color: white;
-	margin-top: 5px;
-	font-family: Bungee;
-	font-size: auto;
-	border-collapse: collapse;
+  width: 100%;
+  color: white;
+  margin-top: 5px;
+  font-family: Bungee;
+  font-size: auto;
+  border-collapse: collapse;
 }
 
 .scoresTableScore {
-	padding: 2px;
-	border: none;
-	text-align: right;
-	}
+  padding: 2px;
+  border: none;
+  text-align: right;
+}
 
 .scoresTablePlayerName {
-	padding: 2px;
-	border: none;
-	text-align: center;
+  padding: 2px;
+  border: none;
+  text-align: center;
 }
 
 .scoresTableDate {
-	padding: 2px;
-	border: none;
-	text-align: center;
+  padding: 2px;
+  border: none;
+  text-align: center;
 }
