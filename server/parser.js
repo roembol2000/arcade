@@ -58,7 +58,7 @@ async function getGames() {
 }
 
 async function saveScore({ gameName, score, playerName }) {
-	const games = getGames().games;
+	const games = await getGames().games;
 	let index = games.findIndex((game) => game.name == gameName)
 	const newScore = {
 		score,
