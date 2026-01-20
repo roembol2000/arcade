@@ -85,6 +85,7 @@ async function saveScore({ gameName, score, playerName }) {
 		console.log(`Could not push score ${newScore} to game. Game is:`);
 		console.log(game);
 		console.error(error);
+		return;
 	}
 	await fs.writeFile(game.envPath, JSON.stringify(game.scores))
 }
