@@ -65,13 +65,21 @@ async function saveScore({ gameName, score, playerName }) {
 		console.log(games);
 		return;
 	}
+
+	const game = games[index];
+	if (!game) {
+		console.log(`Could not get game at index ${index}. Full game list:`);
+		console.log(games);
+		return;
+	}
+	
 	const newScore = {
 		score,
 		playerName,
 		date: (new Date()).toLocaleDateString('en-GB')
 	}
-	games[index].scores.push(newScore)
-	await fs.writeFile(games[index].envPath, JSON.stringify(games[index].scores))
+	game.scores.push(newScore)
+	await fs.writeFile(game.envPath, JSON.stringify(game.scores))
 }
 
 module.exports = {
