@@ -60,7 +60,7 @@ async function getGames() {
 async function saveScore({ gameName, score, playerName }) {
 	const { games } = await getGames();
 	let index = games.findIndex((game) => game.name == gameName)
-	if (!index) {
+	if (index === -1) {
 		console.log(`Could not get index for game ${gameName}. Full games list:`);
 		console.log(games);
 		return;
