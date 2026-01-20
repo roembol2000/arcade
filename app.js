@@ -16,7 +16,7 @@
 	const io = require('socket.io')(httpServer)
 	const router = await require('./server/router.js')(io)
 	app.get('/', router.index)
-	app.get('/keyboard/:gameName/:score', router.keyboard)
+	app.get('/keyboard/:gameName/:score/:date', router.keyboard)
 
 	await new Promise((resolve) => httpServer.listen(8080, resolve))
 
