@@ -78,7 +78,14 @@ async function saveScore({ gameName, score, playerName }) {
 		playerName,
 		date: (new Date()).toLocaleDateString('en-GB')
 	}
-	game.scores.push(newScore)
+
+	try {
+		game.scores.push(newScore)
+	} catch (error) {
+		console.log(`Could not push score ${newScore} to game. Game is:`);
+		console.log(game);
+		console.error(error);
+	}
 	await fs.writeFile(game.envPath, JSON.stringify(game.scores))
 }
 
